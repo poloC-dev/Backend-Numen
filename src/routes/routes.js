@@ -1,29 +1,29 @@
 const express = require("express");
 const {
-  addUserController,
-  getUserController,
-  getUserByUsernameController,
-  updateUserController,
-  deleteUserController,
+  addTonerController,
+  getTonersController,
+  getTonerByNameController,
+  updateTonerController,
+  deleteTonerController,
 } = require("../controller/userController");
 const validator = require("../utils/validator");
 const { body } = require("express-validator");
 const router = express.Router();
 
-router.get("/user", getUserController);
+router.get("/toner", getTonersController);
 
-router.get("/user/:username", getUserByUsernameController);
+router.get("/toner/:name", getTonerByNameController);
 
-router.put("/user/:username", updateUserController);
+router.put("/toner/:name", updateTonerController);
 
 router.post(
-  "/user",
-  body("password").isLength({ min: 5, max: 15 }),
-  body("username").isLength({ min: 5, max: 15 }),
+  "/toner",
+  body("name").isLength({ min: 2, max: 15 }),
+  body("model").isLength({ min: 2, max: 15 }),
   validator,
-  addUserController 
+  addTonerController
 );
 
-router.delete("/user/:username", deleteUserController);
+router.delete("/toner/:name", deleteTonerController);
 
 module.exports = router;

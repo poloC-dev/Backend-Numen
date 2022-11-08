@@ -1,53 +1,53 @@
-const addUserService = require("../services/users/addUserService");
-const getUserService = require("../services/users/getUserService");
-const getUserByUsernameService = require("../services/users/getUserByUsernameService");
-const udapteUserService = require("../services/users/updateUserService");
-const deleteUserService = require("../services/users/deleteUserService");
+const addTonerService = require("../services/toners/addTonerService");
+const getTonersService = require("../services/toners/getTonersService");
+const getTonerByNameService = require("../services/toners/getTonerByNameService");
+const updateTonerService = require("../services/toners/updateTonerService");
+const deleteTonerService = require("../services/toners/deleteTonerService");
 
-const getUserController = async (req, res) => {
+const getTonersController = async (req, res) => {
   try {
-    const users = await getUserService();
-    res.json(users);
+    const toners = await getTonersService();
+    res.json(toners);
   } catch (error) {
     console.log(error);
     res.json({ message: error.message });
   }
 };
 
-const getUserByUsernameController = async (req, res) => {
+const getTonerByNameController = async (req, res) => {
   try {
-    const users = await getUserByUsernameService(req);
-    res.json(users);
+    const toners = await getTonerByNameService(req);
+    res.json(toners);
   } catch (error) {
     console.log(error);
     res.json({ message: error.message });
   }
 };
 
-const addUserController = async (req, res) => {
+const addTonerController = async (req, res) => {
   try {
-    const addUser = await addUserService(req);
-    res.status(201).json({ message: `Creado el usuario ${addUser.username}` });
+    const addToners = await addTonerService(req);
+    res.status(201).json({ message: `Creado el toner ${addToners.name}` });
   } catch (error) {
     console.log(error);
     res.json({ message: error.message });
   }
 };
 
-const updateUserController = async (req, res) => {
+const updateTonerController = async (req, res) => {
   try {
-    const updateUser = await udapteUserService(req);
-    res.status(200).json({ message: `Modificado el usuario ${updateUser}` });
+    const updateToner = await updateTonerService(req);
+    res.status(200).json({ message: `Modificado el toner ${updateToner}` });
   } catch (error) {
     console.log(error);
     res.json({ message: error.message });
   }
 };
 
-const deleteUserController = async (req, res) => {
+const deleteTonerController = async (req, res) => {
   try {
-    const deleteUser = await deleteUserService(req);
-    res.json({ message: `Usuario ${deleteUser} a sido eliminado con exito` });
+    const deleteToner = await deleteTonerService(req);
+    res.json({ message: `Toner ${deleteToner} a sido eliminado con exito` });
   } catch (error) {
     console.log(error);
     res.json({ message: error.message });
@@ -55,9 +55,9 @@ const deleteUserController = async (req, res) => {
 };
 
 module.exports = {
-  getUserController,
-  addUserController,
-  getUserByUsernameController,
-  updateUserController,
-  deleteUserController,
+  getTonersController,
+  addTonerController,
+  getTonerByNameController,
+  updateTonerController,
+  deleteTonerController,
 };
